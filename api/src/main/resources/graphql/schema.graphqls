@@ -1,0 +1,98 @@
+type Query {
+    users: UsersQueries!
+    posts: PostsQueries!
+    comments: CommentsQueries!
+}
+
+type Mutation {
+    users: UsersMutations!
+    posts: PostsMutations!
+    comments: CommentsMutations!
+}
+
+# Entidades.
+# ----------
+type User {
+    id: Int
+    firstName: String
+    secondName: String
+    lastName: String
+    secondLastName: String
+    marriedLastName: String
+}
+
+type Post {
+    id: Int
+    user: User
+    title: String
+    body: String
+    tags: [String]
+    upvotes: Int
+    downvotes: Int
+}
+
+type Comment {
+    id: Int,
+    user: User
+    body: String
+    upvotes: Int
+    downvotes: Int
+}
+
+# Entradas.
+# ---------
+input CreateUserInput {
+    firstName: String!
+    secondName: String
+    lastName: String!
+    secondLastName: String
+    marriedLastName: String
+}
+
+input CreatePostInput {
+    userId: Int!
+    title: String!
+    body: String!
+    tags: [String!]
+}
+
+input CreateCommentInput {
+    userId: Int!
+    body: String!
+}
+
+# Queries.
+# --------
+type UsersQueries {
+    users: [User]!
+}
+
+type PostsQueries {
+    post(id: Int!): Post!
+    posts(page: Int = 0, size: Int = 20): [Post!]!
+    mostPopularPosts(page: Int = 0, size: Int = 20): [Post!]!
+    commentsCount(postId: Int!): Int!
+}
+
+type CommentsQueries {
+    comments(postId: Int!, page: Int = 0, size: Int = 20): [Comment!]!
+    mostPopularComments(postId: Int!, page: Int = 0, size: Int = 20): [Comment!]!
+}
+
+# Mutaciones.
+# -----------
+type UsersMutations {
+    createUser(input: CreateUserInput!): User
+}
+
+type PostsMutations {
+    createPost(input: CreatePostInput!): Post
+    deletePost(id: Int!): Boolean
+    votePost(id: Int!, upvote: Boolean): Post!
+}
+
+type CommentsMutations {
+    createComment(postId: Int!, input: CreateCommentInput!): Comment
+    deleteComment(postId: Int!, commentId: Int!): Boolean
+    voteComment(id: Int!, upvote: Boolean): Comment!
+}
