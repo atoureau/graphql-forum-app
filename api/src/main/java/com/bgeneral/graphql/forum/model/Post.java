@@ -8,16 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
 /**
  * Entidad JPA que modela a una publicacion.
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "posts")
 public class Post {
