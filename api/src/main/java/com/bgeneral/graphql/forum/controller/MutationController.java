@@ -7,7 +7,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 /**
- * Este controlador recibe las peticiones de mutacion y las rutea hacia su resolvedor correspondiente.
+ * Esta clase controla las peticiones de mutaciones para rutearlas hacia su resolvedor correspondiente.
  */
 @Controller
 public class MutationController {

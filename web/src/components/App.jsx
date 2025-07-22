@@ -1,4 +1,4 @@
-import PopularPosts from './components/PopularPosts.jsx';
+import {PopularPosts} from './posts';
 
 function App() {
     return (

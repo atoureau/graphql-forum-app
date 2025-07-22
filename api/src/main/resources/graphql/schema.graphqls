@@ -33,6 +33,7 @@ type Post {
 
 type Comment {
     id: Int,
+    post: Post
     user: User
     body: String
     upvotes: Int

@@ -1,4 +1,4 @@
-package com.bgeneral.graphql.forum.config;
+package com.bgeneral.graphql.forum.config.generation;
 
 import com.bgeneral.graphql.forum.model.Comment;
 import com.bgeneral.graphql.forum.model.Post;

@@ -7,7 +7,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 /**
- * Este controlador recibe las peticiones de consulta y las rutea hacia su resolvedor correspondiente.
+ * Esta clase controla las peticiones de queries para rutearlas hacia su resolvedor correspondiente.
  */
 @Controller
 public class QueryController {

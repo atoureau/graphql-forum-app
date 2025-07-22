@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const GET_MOST_POPULAR_POSTS = gql`
-    query GetMostPopularPosts($page: Int = 0, $size: Int = 5) {
+export const MOST_POPULAR_POSTS = gql`
+    query MostPopularPosts($page: Int = 0, $size: Int = 5) {
         posts {
             mostPopularPosts(page: $page, size: $size) {
                 id
@@ -19,8 +19,8 @@ export const GET_MOST_POPULAR_POSTS = gql`
     }
 `;
 
-export const GET_COMMENTS_COUNT = gql`
-    query GetCommentCount($postId: Int!) {
+export const POSTS_COMMENTS_COUNT = gql`
+    query PostsCommentsCount($postId: Int!) {
         posts {
             commentsCount(postId: $postId)
         }

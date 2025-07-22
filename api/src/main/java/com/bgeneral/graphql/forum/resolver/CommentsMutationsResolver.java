@@ -9,6 +9,9 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Esta clase controla las peticiones de mutaciones sobre los comentarios.
+ */
 @Controller
 public class CommentsMutationsResolver {
     private final CommentRepository commentRepo;
@@ -21,6 +24,13 @@ public class CommentsMutationsResolver {
         this.userRepo = userRepo;
     }
 
+    /**
+     * Este metodo se mapea contra la mutacion de comentarios declarada en el esquema para crear un comentario.
+     *
+     * @param postId Id de la publicacion.
+     * @param input Datos de entrada para crear el comentario.
+     * @return Comentario.
+     */
     @SchemaMapping(typeName = "CommentsMutations", field = "createComment")
     public Comment createComment(@Argument Integer postId, @Argument CreateCommentInputDTO input) {
         final Comment comment = new Comment();
@@ -32,6 +42,13 @@ public class CommentsMutationsResolver {
         return commentRepo.save(comment);
     }
 
+    /**
+     * Este metodo se mapea contra la mutacion de comentarios declarada en el esquema para eliminar un comentario.
+     *
+     * @param postId Id de la publicacion.
+     * @param commentId Id del comentario.
+     * @return Boleano que indica que el comentario fue eliminado.
+     */
     @SchemaMapping(typeName = "CommentsMutations", field = "deleteComment")
     public Boolean deleteComment(@Argument Integer postId, @Argument Integer commentId) {
         return commentRepo.findById(commentId).filter(comment -> comment.getPost().getId().equals(postId)).map(comment -> {
@@ -40,6 +57,13 @@ public class CommentsMutationsResolver {
         }).orElse(false);
     }
 
+    /**
+     * Este metodo se mapea contra la mutacion de comentarios declarada en el esquema para votar un comentario.
+     *
+     * @param id Id del comentario.
+     * @param upvote Indica si el voto es a favor.
+     * @return Comentario.
+     */
     @SchemaMapping(typeName = "CommentsMutations", field = "voteComment")
     public Comment voteComment(@Argument Integer id, @Argument Boolean upvote) {
         final Comment comment = commentRepo.findById(id).orElseThrow();
