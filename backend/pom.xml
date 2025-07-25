@@ -8,9 +8,9 @@
         <version>3.5.3</version>
         <relativePath/>
     </parent>
-    <groupId>org.atoureau.graphql</groupId>
+    <groupId>com.bgeneral.utp</groupId>
     <artifactId>graphql-forum-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>graphql-forum-api</name>
     <description>Proyecto que ilustra como diseñar e implementar un API con arquitectura GraphQL.</description>
     <properties>

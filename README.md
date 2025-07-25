@@ -1,9 +1,27 @@
-# GraphQL Forum App
+# ⚛️ GraphQL Forum Demo
 
-Este proyecto está desarrollado con tecnologías de backend y frontend para ilustrar el uso de APIs
-con arquitectura GraphQL.
+Este proyecto es una demo desarrollada con tecnologías backend y frontend para ilustrar el proceso de
+diseño e implementación de APIs con arquitectura GraphQL.
 
-## Referencias
+---
+
+## 🧰 Tecnologías
+
+Esta demo está construida con las tecnologías:
+
+### Backend
+
+- Spring Data JPA
+- Spring for GraphQL
+
+### Frontend
+
+- Vite + React
+- Apollo Client
+
+---
+
+## 📚 Referencias
 
 ### Documentación
 
@@ -12,153 +30,43 @@ Para mayor documentación sobre la arquitectura GraphQL, puede referirse a los s
 - [GraphQL](https://graphql.org/learn/)
 - [GraphQL Libraries](https://graphql.org/community/tools-and-libraries/)
 - [GraphQL over HTTP](https://graphql.org/learn/serving-over-http/)
-- [Spring for GraphQL](https://docs.spring.io/spring-graphql/reference/index.html)
 - [Apollo GraphQL Naming Conventions](https://www.apollographql.com/docs/graphos/schema-design/guides/naming-conventions)
+- [Migrating from REST to GraphQL](https://docs.github.com/en/graphql/guides/migrating-from-rest-to-graphql)
 
-### Guías
+---
 
-Para ejemplos de como implementar GraphQL en el lado del cliente y en el lado del servidor, puede referirse a
-los siguientes enlaces:
+## 📝 Proyecto
 
-- [GraphQL Client with Apollo](https://www.apollographql.com/docs/react/get-started)
-- [GraphQL Service with Spring](https://spring.io/guides/gs/graphql-server)
+Eres un desarrollador freelancer y eres contactado por un cliente interesado en contratarte para desarrollar
+un foro de discusión pública estilo Reddit, Quora o Stack Overflow.
 
-## Requisitos
+El cliente indica que este proyecto debe satisfacer los siguientes requisitos funcionales:
 
-El proyecto está dividido en 2 grandes secciones: API y WEB. Cada sección cuenta con sus propios requisitos.
+- [x] El usuario puede realizar publicaciones.
+- [x] El usuario puede realizar comentarios en las publicaciones.
+- [x] El usuario puede votar a favor o en contra de las publicaciones.
+- [x] El usuario puede votar a favor o en contra de los comentarios.
+- [x] Al usuario se le debe presentar un listado con las publicaciones más populares en la página de inicio.
 
-### Servidor GraphQL
+### 💭 Requisitos funcionales
 
-Para iniciar el servidor api, se recomienda el uso de una versión reciente de **IntelliJ IDEA Community**, el cual
-cuenta con versiones de Java y Maven preinstaladas que son compatibles con el proyecto.
+Anotas los requisitos funcionales del cliente, pero da la sensación de que están muy abiertos a la
+interpretación o son muy vagos, por lo que le haces las siguientes preguntas para salir de dudas:
 
-Si no puede descargar, instalar y usar IntelliJ IDEA Community, se recomienda instalar las siguientes dependencias
-en su sistema operativo.
+1. ¿Cualquier persona puede publicar o ver publicaciones y/o comentarios?
+2. ¿Qué tipo de datos puede contener una publicación? (texto, imágenes, videos, etc)
+3. ¿Cuál es el significado de la frase "las publicaciones más populares"?
 
-* [OpenJDK 21](https://jdk.java.net/archive/)
-* [Maven 3](https://downloads.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.zip)
+El cliente contesta a tus preguntas con lo siguiente:
 
-Para el OpenJDK, se recomienda instalar un build construido, compilado y distribuido por Adoptium (Temurin).
+* El usuario debe registrarse e iniciar sesión para publicar, comentar y votar.
+* El usuario debe tener la capacidad de crear una publicación que contenga:
+  * Título.
+  * Etiquetas.
+  * Cuerpo (texto).
+* El usuario debe tener la capacidad de comentar sobre cualquier publicación existente.
+* Los comentarios deben estar ordenados por popularidad.
+* El usuario puede votar a favor o en contra de una publicación o comentario ya existente.
+* La popularidad se define como la cantidad de votos positivos menos la cantidad de votos negativos.
 
-#### Windows
-
-Para Windows, puede utilizar el gestor de paquetes **winget** a través de la consola de Powershell.
-
-```powershell
-winget install --id EclipseAdoptium.Temurin.21.JDK --source winget
-java -version
-```
-
-```powershell
-winget install --id Apache.Maven --source winget
-mvn -v
-```
-
-#### Linux
-
-Para cualquier distribución de Linux, puede utilizar el gestor de paquetes que aplique: apt, dnf, yum, etc.
-
-```bash
-sudo apt update
-sudo apt install temurin-21-jdk
-```
-
-```bash
-sudo apt update
-sudo apt install maven
-```
-
-#### MacOS
-
-Para MacOS, puede utilizar el gestor de paquetes **homebrew** a través de la terminal.
-
-```bash
-brew tap homebrew/cask-versions
-brew tap adoptium/adoptium
-brew install --cask temurin21
-/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin/java -version
-```
-
-```bash
-brew install maven
-mvn -version
-```
-
-### Cliente GraphQL
-
-Para iniciar el servidor web, se debe instalar NodeJS. Se recomienda instalar una versión superior o igual a NodeJS 16.
-
-#### Windows
-
-Para Windows, puede utilizar el gestor de paquetes **winget** a través de la consola de Powershell.
-
-```powershell
-winget install OpenJS.NodeJS
-node -v
-npm -v
-```
-
-#### Linux
-
-Para cualquier distribución de Linux, puede utilizar el gestor de paquetes que aplique: apt, dnf, yum, etc.
-
-```bash
-sudo apt update
-sudo apt install nodejs npm
-node -v
-npm -v
-```
-
-#### MacOS
-
-Para MacOS, puede utilizar el gestor de paquetes **homebrew** a través de la terminal.
-
-```bash
-brew install node
-node -v
-npm -v
-```
-
-## Iniciar Servidor GraphQL
-
-Para iniciar el servidor GraphQL puede ejecutar el siguiente comando sobre la raíz del proyecto:
-
-```bash
-mvn clean spring-boot:run
-```
-
-### H2 Database
-
-Este proyecto trabaja con la base de datos relacional H2.
-
-Puede acceder a la base de datos desde el siguiente enlace: http://localhost:8080/h2-console
-
-Para conectarse a la base de datos debe iniciar sesión con los siguientes datos:
-
-* Driver class: org.h2.Driver
-* JDBC URL: jdbc:h2:mem:testdb
-* User Name: sa
-
-### GraphiQL
-
-Este proyecto utiliza GraphiQL como la interfaz web interactiva para explorar y validar los queries y mutaciones
-declarados en el esquema de GraphQL.
-
-Puede acceder a GraphiQL desde el siguiente enlace: http://localhost:8080/graphiql
-
-## Iniciar Cliente GraphQL
-
-Para iniciar el servidor web, debe instalar las dependencias internas del proyecto a través de npm.
-
-Debe posicionarse sobre la carpeta en la que está el archivo _**package.json**_ y ejecutar el siguiente comando:
-
-```bash
-  npm install
-```
-
-Una vez instaladas las dependencias internas del proyecto, ya puede iniciar el servidor web a través
-del siguiente comando:
-
-```bash
-  npm run dev
-```
+¡Ahora que los requisitos funcionales del proyecto están más claros, ya podemos analizar la solución! 🔥
